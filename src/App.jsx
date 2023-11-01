@@ -15,6 +15,7 @@ function App() {
 
   const handleUndo = () => {
     const pointsList = [...points];
+    if(pointsList.length === 0) return;
     const popped = pointsList.pop();
     setPopPoints([...popPoints, popped]);
     setPoints(pointsList);
@@ -22,6 +23,7 @@ function App() {
 
   const handleRedo = () => {
     const pointsList = [...popPoints];
+    if(pointsList.length === 0) return;
     const popped = pointsList.pop();
     setPoints([...points, popped]);
     setPopPoints(pointsList);
@@ -29,8 +31,8 @@ function App() {
 
   return (
     <>
-    <button onClick={handleUndo}>undo</button>
-    <button onClick={handleRedo}>Redo</button>
+      <button onClick={handleUndo}>undo</button>
+      <button onClick={handleRedo}>Redo</button>
       <div className="app" onClick={handleOnclick}>
         {points.map((point, idx) => 
           <div key={idx} className="circle" style={{
